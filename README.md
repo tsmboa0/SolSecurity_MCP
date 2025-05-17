@@ -199,6 +199,55 @@ This tool is provided for security analysis purposes only. While it helps identi
 - [Security Blog](https://blog.solsecurity.com)
 - [Support](https://support.solsecurity.com)
 
+## 🤖 LangChain Integration
+
+SolSecurity MCP can be easily integrated with LangChain to provide AI-powered security analysis. Here's how to use it:
+
+```python
+from langchain.agents import AgentExecutor, create_openai_functions_agent
+from langchain_openai import ChatOpenAI
+from langchain.tools import Tool
+from langchain.prompts import ChatPromptTemplate, MessagesPlaceholder
+from src.mcp_tools.poisoning_tool import check_wallet_poisoning
+from src.mcp_tools.dusting_tool import check_wallet_dusting
+
+# Create tools for the agent
+tools = [
+    Tool(
+        name="check_wallet_poisoning",
+        func=check_wallet_poisoning,
+        description="Check if a wallet has been involved in any poisoning attacks. Input should be a Solana wallet address."
+    ),
+    Tool(
+        name="check_wallet_dusting",
+        func=check_wallet_dusting,
+        description="Check if a wallet has received dust from known dusting addresses. Input should be a Solana wallet address."
+    )
+]
+
+# Create the agent
+llm = ChatOpenAI(temperature=0)
+prompt = ChatPromptTemplate.from_messages([
+    ("system", "You are a helpful assistant that analyzes Solana wallet security. Use the tools provided to check for potential threats."),
+    MessagesPlaceholder(variable_name="chat_history"),
+    ("human", "{input}"),
+    MessagesPlaceholder(variable_name="agent_scratchpad"),
+])
+agent = create_openai_functions_agent(llm, tools, prompt)
+agent_executor = AgentExecutor(agent=agent, tools=tools, verbose=True)
+
+# Example usage
+result = agent_executor.invoke({
+    "input": "Can you check if this wallet 7xKXtg2CW87d97TXJSDpbD5jBkheTqA83TZRuJosgAsU has any security risks?"
+})
+```
+
+This integration allows you to:
+- Get natural language responses about wallet security
+- Combine multiple security checks in a single query
+- Get AI-powered explanations of security risks
+- Automate security analysis workflows
+
 ## 🌟 Why Choose SolSecurity MCP?
 
 - **Proactive Protection**: Don't wait for an attack to happen
