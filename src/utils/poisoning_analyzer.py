@@ -3,9 +3,6 @@ import httpx
 import os
 from contextlib import contextmanager
 
-# Load configuration from file
-CONFIG_PATH = os.path.join(os.path.dirname(__file__), 'config', 'poisoning_config.json')
-
 CONFIG = {
     "NATIVE_DUST_THRESHOLD": 0.00001,
     "TOKEN_DUST_THRESHOLD": 0.01,
