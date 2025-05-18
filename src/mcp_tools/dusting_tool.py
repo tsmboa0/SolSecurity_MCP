@@ -1,7 +1,6 @@
-from typing import Any
 from main import mcp
 import os
-from src.utils.dust_analyzer import check_wallet_dusting
+from src.utils.dust_analyzer import check_wallet_dusting as analyze_dusting
 
 HELIUS_API_KEY = os.getenv("HELIUS_API_KEY")
 
@@ -11,11 +10,8 @@ def check_wallet_dusting(wallet_address: str):
     
     Args:
         wallet_address: The address of the wallet to check for dusting.
-        helius_api_key: The API key for the Helius API.
 
     Returns:
         A dictionary containing the results of the dusting check.
     """
-    return check_wallet_dusting(wallet_address, HELIUS_API_KEY)
-
-
+    return analyze_dusting(wallet_address, HELIUS_API_KEY)

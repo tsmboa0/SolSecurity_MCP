@@ -6,7 +6,7 @@ from src.utils.poisoning_analyzer import check_wallet_poisoning
 HELIUS_API_KEY = os.getenv("HELIUS_API_KEY")
 
 @mcp.tool(description="Check if a wallet has been involved in any poisoning attacks.")
-def check_wallet_poisoning(wallet_address: str):
+def analyze_wallet_poisoning(wallet_address: str):
     """Check if a wallet has been involved in any poisoning attacks.
     
     Args:

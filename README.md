@@ -80,36 +80,15 @@ uv venv
 uv pip install -e .
 ```
 
-3. Set up environment variables:
+3. Add these to your .env file:
 ```bash
-export HELIUS_API_KEY="your_helius_api_key"
-export FLIPSIDE_API_KEY="your_flipside_api_key"
+HELIUS_API_KEY="your_helius_api_key"
+FLIPSIDE_API_KEY="your_flipside_api_key" (optional)
 ```
 
 4. Run the server:
 ```bash
 uv run main.py
-```
-
-### Option 2: Docker Installation
-
-1. Clone the repository:
-```bash
-git clone https://github.com/yourusername/solsecurity_mcp.git
-cd solsecurity_mcp
-```
-
-2. Build the Docker image:
-```bash
-docker build -t solsecurity-mcp .
-```
-
-3. Run the container:
-```bash
-docker run -p 8000:8000 \
-  -e HELIUS_API_KEY="your_helius_api_key" \
-  -e FLIPSIDE_API_KEY="your_flipside_api_key" \
-  solsecurity-mcp
 ```
 
 ## 🔧 Usage
@@ -123,11 +102,39 @@ from src.mcp_tools.poisoning_tool import check_wallet_poisoning
 from src.mcp_tools.dusting_tool import check_wallet_dusting
 
 # Check for poisoning attacks
-poisoning_results = check_wallet_poisoning("your_wallet_address")
+poisoning_results = check_wallet_poisoning("your_wallet_address", "helius api key")
 
 # Check for dusting attacks
-dusting_results = check_wallet_dusting("your_wallet_address")
+dusting_results = check_wallet_dusting("your_wallet_address", "helius api key")
 ```
+
+## Integrating with Claude for desktop
+
+run this code in your terminal (if you use Visual studio code)
+
+```bash
+code ~/Library/Application\ Support/Claude/claude_desktop_config.json
+```
+
+Then modify the json file like this:
+
+```json
+{
+    "mcpServers": {
+        "solsecurity": {
+            "command": "uv",
+            "args": [
+                "--directory",
+                "/ABSOLUTE/PATH/TO/PARENT/FOLDER/solsecurity",
+                "run",
+                "main.py"
+            ]
+        }
+    }
+}
+```
+
+Voila! Your MCP server is up.
 
 ### For Service Providers
 
@@ -139,25 +146,25 @@ curl -X POST http://localhost:8000/check_wallet_poisoning \
   -d '{"wallet_address": "your_wallet_address"}'
 ```
 
-## 📊 Example Results
+## 📊 Example Results for address poisoning
 
 ```json
 {
-  "wallet_address": "your_wallet_address",
-  "total_transactions": 50,
-  "high_risk_count": 2,
-  "medium_risk_count": 5,
-  "medium_low_risk_count": 8,
-  "clean_count": 35,
-  "transaction_details": [
-    {
-      "tx_id": "...",
-      "risk_label": "High Risk",
-      "visual_risk_score": 5,
-      "final_risk_score": 85
-    }
-    // ... more transactions
-  ]
+  "message": "Analysis summary",
+  "total_transactions_analyzed": 0,
+  "confirmed_poisoning_attempts": 0,
+  "poisoned_addresses": [],
+  "dusting_attempts": 0,
+  "mimicked_addresses": []
+}
+```
+
+## 📊 Example Results for account dusting
+
+```json
+{
+  "dusting_count": 0,
+  "dusting_transactions": []
 }
 ```
 
@@ -167,6 +174,12 @@ curl -X POST http://localhost:8000/check_wallet_poisoning \
 2. **Multiple Wallets**: Use different wallets for different purposes
 3. **Transaction Verification**: Always double-check addresses before sending
 4. **Stay Updated**: Keep the tool updated for the latest security features
+
+## Funny Tips: 
+
+I didn't know my address was heavily targetted with dusting and poisoning attacks till i tested it with this tool 😅. I realized that I these bad guys sends an address similar to mine everytime I send tokens to someone. Yes, it's that bad!
+
+Check out the full twitter post about what i found out using this tool. [x.com/tsmboa]
 
 ## 🤝 Contributing
 
