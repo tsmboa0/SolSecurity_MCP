@@ -175,7 +175,7 @@ curl -X POST http://localhost:8000/check_wallet_poisoning \
 3. **Transaction Verification**: Always double-check addresses before sending
 4. **Stay Updated**: Keep the tool updated for the latest security features
 
-## Funny Tips: 
+## Funny Tips 😃: 
 
 I didn't know my address was heavily targetted with dusting and poisoning attacks till i tested it with this tool 😅. I realized that I these bad guys sends an address similar to mine everytime I send tokens to someone. Yes, it's that bad!
 
@@ -191,26 +191,17 @@ We welcome contributions! Here's how you can help improve SolSecurity MCP:
 4. **Push to the Branch**: `git push origin feature/amazing-feature`
 5. **Open a Pull Request**: Submit your changes for review.
 
-### Development Guidelines
-
-- Follow PEP 8 style guidelines for Python code.
-- Write tests for new features.
-- Update documentation to reflect changes.
-- Ensure backward compatibility when possible.
 
 ## 📝 License
 
-This project is licensed under the MIT License - see the LICENSE file for details.
+This project is licensed under the MIT License.
 
 ## ⚠️ Disclaimer
 
 This tool is provided for security analysis purposes only. While it helps identify potential threats, it cannot guarantee complete protection against all types of attacks. Always follow security best practices and use multiple layers of security.
 
 ## 🔗 Links
-
-- [Documentation](https://docs.solsecurity.com)
-- [Security Blog](https://blog.solsecurity.com)
-- [Support](https://support.solsecurity.com)
+- [Security Blog](https://tsmboa.substack.com/p/understanding-the-threats-account)
 
 ## 🤖 LangChain Integration
 
@@ -283,7 +274,6 @@ This integration allows you to:
 - Integration with more blockchain networks
 - Advanced machine learning for threat detection
 - Real-time alert system
-- Mobile app development
 - API for automated security checks
 
 ## 🔧 Technology Stack
@@ -294,5 +284,3 @@ SolSecurity MCP leverages cutting-edge technologies to provide comprehensive sec
 - **Flipside Analytics**: For advanced blockchain data analysis and risk assessment
 - **Python**: For robust and efficient processing
 - **FastAPI**: For high-performance API endpoints
-
-# License: MIT
