@@ -7,7 +7,6 @@ requires-python = ">=3.11"
 dependencies = [
     "httpx>=0.28.1",
     "mcp[cli]>=1.9.0",
-    "flipside",
     "python-dotenv"
 ]
 

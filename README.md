@@ -78,6 +78,7 @@ cd solsecurity_mcp
 ```bash
 uv venv
 uv pip install -e .
+uv pip install flipside (do this extra step to avoid dependency issues)
 ```
 
 3. Add these to your .env file:
