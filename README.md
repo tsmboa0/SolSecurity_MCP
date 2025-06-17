@@ -1,3 +1,5 @@
+[![MseeP.ai Security Assessment Badge](https://mseep.net/pr/tsmboa0-solsecurity-mcp-badge.png)](https://mseep.ai/app/tsmboa0-solsecurity-mcp)
+
 # SolSecurity MCP: Advanced Solana Wallet Security Analysis
 
 ## 🚨 Why You Need This Tool Right Now
